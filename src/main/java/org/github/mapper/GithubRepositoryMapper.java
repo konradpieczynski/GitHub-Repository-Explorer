@@ -33,7 +33,7 @@ public class GithubRepositoryMapper {
                     }
 
                     List<Uni<Repository>> repositoryUnis = nonForkedRepos.stream()
-                            .map(repo -> mapRepositoryWithBranches(username, repo))
+                            .map(repo -> mapRepositoryWithBranches(repo.getOwner().getLogin(), repo))
                             .toList();
                     return Uni.join().all(repositoryUnis).andFailFast();
                 });
